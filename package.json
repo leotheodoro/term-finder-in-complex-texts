@@ -1,0 +1,16 @@
+{
+  "name": "term-finder-in-complex-texts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:leotheodoro/term-finder-in-complex-texts.git",
+  "author": "Leonardo Theodoro <leonardo@recruitrobin.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.2"
+  }
+}
