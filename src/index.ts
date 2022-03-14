@@ -1,5 +1,5 @@
 import fs from "fs";
-import path from "path";
+import reader from "xlsx";
 import { Command } from "commander";
 import { findValueTermInComplexText } from "./services/findValueTermInComplextText";
 
@@ -17,6 +17,13 @@ try {
 
       const text = fs.readFileSync(filePath, 'utf-8');
       const values = findValueTermInComplexText(options.term, text);
+
+      const worksheet = reader.utils.json_to_sheet(values);
+
+      const workbook = reader.utils.book_new();
+      workbook.Sheets[options.term] = worksheet;
+
+      reader.writeFile(workbook, 'values.ods');
 
       console.log(values);
     });
