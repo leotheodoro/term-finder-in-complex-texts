@@ -1,7 +1,7 @@
 import fs from "fs";
-import reader from "xlsx";
 import { Command } from "commander";
 import { findValueTermInComplexText } from "./services/findValueTermInComplextText";
+import { arrayToCsv } from "./helpers/arrayToCsv";
 
 const program = new Command();
 
@@ -18,17 +18,14 @@ try {
       const text = fs.readFileSync(filePath, 'utf-8');
       const values = findValueTermInComplexText(options.term, text);
 
-      const worksheet = reader.utils.json_to_sheet(values);
+      const writeStream = fs.createWriteStream('temp/data.csv');
 
-      const workbook = reader.utils.book_new();
-      workbook.Sheets[options.term] = worksheet;
+      writeStream.write(`${options.term} \n`);
 
-      reader.writeFile(workbook, 'values.ods');
-
-      console.log(values);
+      writeStream.write(arrayToCsv(values));
     });
 
   program.parse();
 } catch (error) {
-  console.log(error);
+  throw error;
 }
