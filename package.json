@@ -9,9 +9,6 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
     "build": "tsc"
   },
-  "bin": {
-    "ftict": "./disc/index.js"
-  },
   "devDependencies": {
     "@types/node": "^17.0.21",
     "ts-node-dev": "^1.1.8",

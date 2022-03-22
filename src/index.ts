@@ -18,14 +18,14 @@ try {
       const text = fs.readFileSync(filePath, 'utf-8');
       const values = findValueTermInComplexText(options.term, text);
 
-      const writeStream = fs.createWriteStream('temp/data.csv');
+      const writeStream = fs.createWriteStream('data.csv');
 
       writeStream.write(`${options.term} \n`);
 
       writeStream.write(arrayToCsv(values));
     });
 
-  program.parse();
+  program.parse(process.argv);
 } catch (error) {
   throw error;
 }
